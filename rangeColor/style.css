@@ -1,0 +1,48 @@
+body {
+  width: 100%;
+  margin: 2rem;
+  font-family: "Roboto", sans-serif;
+}
+h2 {
+  text-align: center;
+}
+
+.range {
+  width: 100%;
+}
+.range-wrap {
+  width: 45rem;
+  position: relative;
+  margin: 0 auto 3rem;
+}
+
+.output {
+  background: tomato;
+  color: white;
+  padding: 4px 12px;
+  position: absolute;
+  border-radius: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.output::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: tomato;
+  top: -1px;
+  left: 50%;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+#color {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  margin: 0 auto;
+}

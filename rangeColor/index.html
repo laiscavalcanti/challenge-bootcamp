@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Range Colors</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <h2>Change Color</h2>
+    <div class="range-wrap">
+      <labe>(R): Red</labe>
+      <input type="range" class="range" id="rangeRed" "min="0" max="255"
+      value="0" >
+      <output class="output"> </output>
+    </div>
+
+    <div class="range-wrap">
+      <labe>(G): Green</labe>
+      <input type="range" class="range" id="rangeGreen" min="0" max="255" />
+      <output class="output"></output>
+    </div>
+
+    <div class="range-wrap">
+      <labe>(B): Blue</labe>
+      <input type="range" class="range" id="rangeBlue" min="0" max="255" />
+      <output class="output"></output>
+    </div>
+    <section class="container"><div id="color"></div></section>
+
+    <script defer src="index.js"></script>
+  </body>
+</html>
