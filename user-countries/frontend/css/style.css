@@ -10,7 +10,10 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
-
+.flex-center{
+  align-items: center;
+  justify-content: center;
+}
 .bordered {
   border: 1px solid lightblue;
   padding: 10px;
