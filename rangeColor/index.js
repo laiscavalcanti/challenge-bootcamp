@@ -1,6 +1,6 @@
 const allRanges = document.querySelectorAll(".range-wrap");
 
-allRanges.forEach((wrap, index) => {
+allRanges.forEach((wrap) => {
   const range = wrap.querySelector(".range");
   const output = wrap.querySelector(".output");
 
