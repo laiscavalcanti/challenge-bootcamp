@@ -5,7 +5,7 @@ let globalUsersStatistics = [];
 async function start() {
     await promiseUsers();
     hideSpinner();
-    configFilter();
+    handleButtonClick();
 }
 
 function promiseUsers() {
@@ -31,48 +31,59 @@ async function fetchUsers() {
     };
   });
   console.log(globalUsers)
-  globalUsers.sort((a) => a.userName);
-  globalFilteredUsers = [...globalUsers]
+  globalFilteredUsers = [...globalUsers];
+  console.log(globalFilteredUsers)
   
 }
 function hideSpinner() {
     const spinner = document.querySelector("#spinner");
     spinner.classList.add("hide")
 }
-function configFilter(){
-    const buttonFilter = document.querySelector("#buttonFilter");
+
+/*function Users(){
+      globalUsers.sort((a) => a.userName);
+    
+}*/
+/*function configFilter(){
+   
     const inputFilter = document.querySelector("#inputFilter");
   
     //inputFilter.addEventListener("keyup", handleFilterKeyUp);
     buttonFilter.addEventListener("click", handleButtonClick);
-}
-function handleButtonClick(){
-    const inputFilter = document.querySelector("#inputFilter");
-    const filterValue = inputFilter.value.toLowerCase().trim();
-
-    globalFilteredUsers = globalUsers.filter((item) => {
-        return item.userName.toLowerCase().includes(filterValue);
-    })
-    render();
-}
-
+}*/
 
 function render(){
-
-    const divUsers = document.querySelector("#users");
+   const divUsers = document.querySelector("#users");
         divUsers.innerHTML = `
             <div class= 'row'>
-            ${globalUsers.map(({userName, userAge, userGerder}) =>{
+            ${globalFilteredUsers.map(({userName, userAge, userGerder}) =>{
                 return `
                 <div>
                     <span>${userName}</span>
                     <span>${userAge}</span>
-        
+                    <span>${userGerder}</span>
+                    
                 </div>
                 `
             })
                 .join("")}
             </div>
         `
+}
+function handleButtonClick(){
+
+  const buttonFilter = document.querySelector("#buttonFilter");
+
+  buttonFilter.addEventListener('click', () => {
+    const inputFilter = document.querySelector("#inputFilter");
+    const filterValue = inputFilter.value.toLowerCase().trim();
+
+    globalFilteredUsers = globalUsers.filter((item) => {
+      return item.userName.toLowerCase().includes(filterValue);
+  });
+  console.log(globalFilteredUsers)
+  render();
+})
+
 }
 start();
