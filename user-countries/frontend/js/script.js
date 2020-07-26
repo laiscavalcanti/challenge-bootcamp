@@ -23,7 +23,6 @@ async function start() {
   render();
   configFilter();
 }
-
 function promiseUsers() {
   return new Promise(async (resolve, reject) => {
     const users = await fetchUsers();
@@ -118,7 +117,6 @@ function configFilter() {
   inputFilter.addEventListener("keyup", handleFilterKeyUp);
   buttonFilter.addEventListener("click", handleButtonClick);
 }
-
 function handleButtonClick() {
   const inputFilter = document.querySelector("#inputFilter");
   const filterValue = inputFilter.value.toLowerCase().trim();
@@ -132,5 +130,4 @@ function handleFilterKeyUp({key}) {
   if (key !== "Enter") return;
   handleButtonClick();
 }
-
 start();
