@@ -1,0 +1,19 @@
+.title{
+  text-align: center;
+}
+
+#container-filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#users {
+  margin-top: 3rem;
+  border: 1px solid lightblue;
+  padding: 1rem;
+}
+#statistics {
+    margin-top: 3rem;
+    border: 1px solid lightblue;
+    padding: 1rem;
+}

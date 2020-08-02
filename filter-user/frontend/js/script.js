@@ -1,11 +1,26 @@
-let globalUsers = [];
-let globalFilteredUsers = [];
-let globalUsersStatistics = [];
+let inputFilter = null,
+    buttonFilter = null,
+    panelUsers = null,
+    panelStatistics = null;
+
+window.addEventListener('load', () =>{
+  mapElements();
+  await promiseUsers();
+
+
+})
+
+function mapElements(){
+  inputFilter = document.querySelector("#inputFilter");
+  buttonFilter = document.querySelector("#buttonFilter");
+  panelUsers = document.querySelector("#users");
+  panelStatistics = document.querySelector("#statistics");
+}
 
 async function start() {
-    await promiseUsers();
-    hideSpinner();
-    handleButtonClick();
+  await promiseUsers();
+  hideSpinner();
+  handleButtonClick();
 }
 
 function promiseUsers() {
@@ -20,6 +35,7 @@ function promiseUsers() {
 async function fetchUsers() {
   const resource = await fetch("http://localhost:3003/users");
   const json = await resource.json();
+  users = json.results;
 
   globalUsers = json.map(({ name, picture, dob, gender, login }) => {
     return {
@@ -30,60 +46,76 @@ async function fetchUsers() {
       userGerder: gender,
     };
   });
-  console.log(globalUsers)
+  console.log(globalUsers);
+  globalUsers.sort((a => a.userName));
   globalFilteredUsers = [...globalUsers];
-  console.log(globalFilteredUsers)
-  
 }
 function hideSpinner() {
-    const spinner = document.querySelector("#spinner");
-    spinner.classList.add("hide")
+  const spinner = document.querySelector("#spinner");
+  spinner.classList.add("hide");
 }
 
-/*function Users(){
-      globalUsers.sort((a) => a.userName);
-    
-}*/
-/*function configFilter(){
-   
-    const inputFilter = document.querySelector("#inputFilter");
-  
-    //inputFilter.addEventListener("keyup", handleFilterKeyUp);
-    buttonFilter.addEventListener("click", handleButtonClick);
-}*/
 
-function render(){
-   const divUsers = document.querySelector("#users");
-        divUsers.innerHTML = `
+function addEvents() {
+ 
+    inputFilter.addEventListener('keyup', handleKeyUp);
+}
+
+function handleKeyUp(event){
+  const currentKey = event.key;
+
+    if(currentKey !== event.key){
+      return;
+    }
+  const filterText = event.target.value
+  console.log(filterText);
+}
+  const resultsUsers = document.querySelector("#resultsUsers");
+  resultsUsers.innerHTML = `${globalFilteredUsers.length} usuário(s) encontrado(s)`;
+  divUsers.innerHTML = `
             <div class= 'row'>
-            ${globalFilteredUsers.map(({userName, userAge, userGerder}) =>{
-                return `
+           ${globalFilteredUsers
+             .map(({ userName, userAge, userGerder }) => {
+               
+               // console.log(userGender.length)
+               return `
                 <div>
                     <span>${userName}</span>
                     <span>${userAge}</span>
                     <span>${userGerder}</span>
-                    
                 </div>
-                `
-            })
-                .join("")}
+          
+                
+                `;
+             })
+             .join("")}
+          
             </div>
-        `
+        `;
 }
-function handleButtonClick(){
+/*function renderStatistics(){
+  const divStatistics = document.querySelector("#statistics");
+  //const filterGender = [d => d.userGender ==='male'];
+  //console.log(filterGender.length)
+       divStatistics.innerHTML = `
+           <div class= 'row'> 
+           ${globalFilteredUsers
+           </div>
+           `
+    }*/
 
-  const buttonFilter = document.querySelector("#buttonFilter");
+function handleButtonClick() {
 
-  buttonFilter.addEventListener('click', () => {
-    const inputFilter = document.querySelector("#inputFilter");
+  buttonFilter.addEventListener("click", () => {
+    
     const filterValue = inputFilter.value.toLowerCase().trim();
 
     globalFilteredUsers = globalUsers.filter((item) => {
       return item.userName.toLowerCase().includes(filterValue);
-  });
-  console.log(globalFilteredUsers)
-  render();
-})
+    });
 
+    renderUsers();
+    //renderStatistics();
+  });
 }
 start();
