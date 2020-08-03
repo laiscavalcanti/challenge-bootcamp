@@ -13,31 +13,16 @@
   <body>
     <section class="container">
       <h2 class="center">Filter User</h2>
-      <div id="spinner" class="flex-row flex-center">
-        <div class="preloader-wrapper small active">
-          <div class="spinner-layer spinner-green-only">
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-              <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
-          </div>
-        </div>
-        <span style="margin-left: 10px;">Aguarde...</span>
-      </div>
-      <div class="flex-row flex-center">
-        <input type="text" id="inputFilter" placeholder="Fritro" />
-        <button
-          id="buttonFilter"
-          class="waves-effect waves-light btn"
+      
+      <div class="input-field col s12 flex-center">
+        <input type="text" class="validate" id="inputFilter" placeholder="Fritro" />
+        <label
+          for="inputFilter"
           style="margin-left: 7px;"
         >
           Filtro
-        </button>
+      </label>
+      <button id="buttonFilter" class="waves-effect waves-light btn">Busca</button>
       </div>
       <section id="resultsUsers"></section>
       <section id="container-filter">
